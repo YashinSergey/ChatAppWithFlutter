@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatefulWidget {
+class Chat extends StatefulWidget {
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _ChatState createState() => _ChatState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _ChatState extends State<Chat> {
 
   @override
   Widget build(BuildContext context) {
@@ -38,35 +38,6 @@ class _MainPageState extends State<MainPage> {
           getMessage(true, "my message"),
           getMessage(false, "a message from Michael"),
         ],),
-
-      bottomNavigationBar: new BottomNavigationBar(
-          items: [
-            new BottomNavigationBarItem(
-              icon: const Icon(Icons.accessibility),
-              title: new Text('Man'),
-              backgroundColor: Colors.lightBlue,
-            ),
-
-            new BottomNavigationBarItem(
-              icon: const Icon(Icons.android),
-              title: new Text('Android'),
-              backgroundColor: Colors.lightBlue,
-            ),
-
-            new BottomNavigationBarItem(
-              icon: const Icon(Icons.add_a_photo),
-              title: new Text('Camera'),
-              backgroundColor: Colors.lightBlue,
-            ),
-
-            new BottomNavigationBarItem(
-              icon: const Icon(Icons.business_center),
-              title: new Text('Briefcase'),
-              backgroundColor: Colors.lightBlue,
-            )
-          ]
-
-      ),
     );
   }
 
