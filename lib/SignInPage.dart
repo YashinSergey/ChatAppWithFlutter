@@ -43,10 +43,12 @@ class _SignInPageState extends State<SignInPage> {
                 FlatButton(
                   color: Colors.deepOrange,
                   onPressed: () {
-                    setState(() {
-                      isCodeSent = true;
-                      controller.clear();
-                    });
+                    isCodeSent = false;
+                    controller.clear();
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return MainPage();
+                      }));
                   },
                   child: Text(
                       "check sms code"),
