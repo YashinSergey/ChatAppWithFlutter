@@ -41,7 +41,7 @@ class _ChatState extends State<Chat> {
     );
   }
 
-  Container getMessage(bool isYourMassage, String message){
+  Widget getMessage(bool isYourMassage, String message){
     String contactName = isYourMassage ? "" : "Michael";
     return Container(
       margin: isYourMassage ?

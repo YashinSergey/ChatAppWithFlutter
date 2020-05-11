@@ -1,4 +1,5 @@
 import 'package:firtsflutterapp/Chat.dart';
+import 'package:firtsflutterapp/ChatList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -48,7 +49,7 @@ class _SmsInputState extends State<SmsInput> {
                         controller.clear();
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (BuildContext context) {
-                              return Chat();
+                              return ChatList();
                             }));
                       },
                       child: Text(

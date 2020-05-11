@@ -1,4 +1,3 @@
-import 'package:firtsflutterapp/Chat.dart';
 import 'file:///D:/Programming/Flutter/firts_flutter_app/lib/auth/SmsInput.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
