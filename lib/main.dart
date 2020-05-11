@@ -1,5 +1,8 @@
 import 'file:///D:/Programming/Flutter/firts_flutter_app/lib/auth/PhoneInput.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+Firestore firestore = Firestore.instance;
 
 void main() {
   runApp(MyApp());

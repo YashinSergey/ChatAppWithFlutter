@@ -1,4 +1,5 @@
 import 'package:firtsflutterapp/Chat.dart';
+import 'package:firtsflutterapp/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _ChatListState extends State<ChatList> {
     "id" : "1",
     "message" : "you was right, as always",
     "title" : "Perelman Grigori",
-    "private" : false
+    "private" : true
     },
     {
     "id" : "2",
@@ -60,6 +61,20 @@ class _ChatListState extends State<ChatList> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    firestore.collection("chats").snapshots().listen((event) {
+      List<Map<String, dynamic>> data = [];
+      event.documents.forEach((documentSnapshot) {
+        data.add(documentSnapshot.data);
+      });
+      setState(() {
+        dataChats = data;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
@@ -72,15 +87,19 @@ class _ChatListState extends State<ChatList> {
           ListView.builder(
             itemCount: dataChats.length,
             itemBuilder: (context, index) =>
-              getInkWell(context, message: dataChats[index]["message"].toString(), title: dataChats[index]["title"].toString()),)
+              getInkWell(context,
+                  message: dataChats[index]["message"].toString(),
+                  title: dataChats[index]["title"].toString(),
+                  isPrivate: dataChats[index]["private"]),)
       ),
     );
   }
 
-  Widget getInkWell(BuildContext context, {String title = "Chat name", String message = "last message"}) {
+  Widget getInkWell(BuildContext context,
+      {String title = "Chat name", String message = "last message", bool isPrivate = false}) {
     return InkWell(
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           Navigator.of(context).push(
               MaterialPageRoute(builder: (BuildContext context) {
                 return Chat();
@@ -98,10 +117,22 @@ class _ChatListState extends State<ChatList> {
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child:
-          Column(children: <Widget>[
-            Text(title, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold)),
-            Text(message)
-          ],
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                  Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(message)
+                ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: isPrivate? Icon(Icons.lock) : Container(),
+              ),
+            ],
           ),
         ),
       ),
